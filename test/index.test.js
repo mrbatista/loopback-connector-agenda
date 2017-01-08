@@ -5,7 +5,7 @@ var chai = require('chai');
 chai.use(require('dirty-chai'));
 var expect = chai.expect;
 var AgendaConnector = require('../');
-var mongoConnectionString = "mongodb://192.168.99.100:32768/development";
+var mongoConnectionString = 'mongodb://192.168.99.100:32768/development';
 var app = loopback();
 
 describe('Loopback Agenda Connector', function() {
