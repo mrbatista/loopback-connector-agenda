@@ -25,16 +25,22 @@ gulp.task('lint', function () {
     .pipe(plugins.jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('unitTest', function () {
+gulp.task('test', function () {
   gulp.src(paths.tests, {cwd: __dirname})
     .pipe(plugins.plumber(plumberConf))
-    .pipe(plugins.mocha({ reporter: 'list' }));
+    .pipe(plugins.coverage.instrument({
+      pattern: ['lib/**/*.js'],
+      debugDirectory: 'debug'
+    }))
+    .pipe(plugins.mocha())
+    .pipe(plugins.coverage.gather())
+    .pipe(plugins.coverage.format())
+    .pipe(gulp.dest('reports'));
 });
 
 gulp.task('watch', ['test'], function () {
   gulp.watch(paths.watch, ['test']);
 });
 
-gulp.task('test', ['lint', 'unitTest']);
 
-gulp.task('default', ['test']);
+gulp.task('default', ['test', 'lint']);
