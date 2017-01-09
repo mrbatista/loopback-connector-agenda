@@ -24,7 +24,8 @@
     "coveralls": "^2.11.1",
     "dirty-chai": "^1.2.2",
     "gulp": "^3.8.8",
-    "gulp-coverage": "^0.3.38",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-istanbul": "^1.1.1",
     "gulp-jscs": "^4.0.0",
     "gulp-jshint": "^2.0.0",
     "gulp-load-plugins": "^1.4.0",
@@ -36,7 +37,6 @@
     "should": "^11.1.0"
   },
   "scripts": {
-    "test": "gulp test",
-    "posttest": "gulp lint"
+    "test": "gulp"
   }
 }

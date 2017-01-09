@@ -1,5 +1,5 @@
 # loopback-connector-agenda
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coveralls-image]][coveralls-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][daviddm-url]][daviddm-image]
 
 Loopback Agenda Connector
 
@@ -38,7 +38,7 @@ Copyright (c) 2016 Matteo Padovano. Licensed under the MIT license.
 [npm-image]: https://badge.fury.io/js/loopback-connector-agenda.svg
 [travis-url]: https://travis-ci.org/mrbatista/loopback-connector-agenda
 [travis-image]: https://travis-ci.org/mrbatista/loopback-connector-agenda.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/mrbatista/loopback-connector-agenda?branch=master
+[coveralls-image]: https://coveralls.io/repos/github/mrbatista/loopback-connector-agenda/badge.svg?branch=master
 [daviddm-url]: https://david-dm.org/mrbatista/loopback-connector-agenda.svg?theme=shields.io
 [daviddm-image]: https://david-dm.org/mrbatista/loopback-connector-agenda
-[coveralls-url]: https://coveralls.io/r/mrbatista/loopback-connector-agenda
-[coveralls-image]: https://coveralls.io/repos/mrbatista/loopback-connector-agenda/badge.png
