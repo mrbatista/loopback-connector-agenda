@@ -25,17 +25,25 @@ gulp.task('lint', function () {
     .pipe(plugins.jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('test', function () {
+gulp.task('pre-test', function () {
+  return gulp.src(['lib/**/*.js'], {cwd: __dirname})
+    // Covering files
+    .pipe(plugins.istanbul())
+    // Force `require` to return covered files
+    .pipe(plugins.istanbul.hookRequire());
+});
+
+gulp.task('test', ['pre-test'], function () {
   gulp.src(paths.tests, {cwd: __dirname})
     .pipe(plugins.plumber(plumberConf))
-    .pipe(plugins.coverage.instrument({
-      pattern: ['lib/**/*.js'],
-      debugDirectory: 'debug'
-    }))
     .pipe(plugins.mocha())
-    .pipe(plugins.coverage.gather())
-    .pipe(plugins.coverage.format())
-    .pipe(gulp.dest('reports'));
+    // Creating the reports after tests ran
+    .pipe(plugins.istanbul.writeReports())
+});
+
+gulp.task('coveralls', function () {
+  gulp.src('coverage/lcov.info')
+    .pipe(plugins.coveralls());
 });
 
 gulp.task('watch', ['test'], function () {
@@ -43,4 +51,4 @@ gulp.task('watch', ['test'], function () {
 });
 
 
-gulp.task('default', ['test', 'lint']);
+gulp.task('default', ['test', 'coveralls', 'lint']);
