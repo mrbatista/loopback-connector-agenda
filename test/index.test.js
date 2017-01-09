@@ -5,22 +5,23 @@ var chai = require('chai');
 chai.use(require('dirty-chai'));
 var expect = chai.expect;
 var AgendaConnector = require('../');
-var mongoConnectionString = 'mongodb://192.168.99.100:32768/development';
 var app = loopback();
 
 describe('Loopback Agenda Connector', function() {
-  var QueueJob;
+  var QueueJob, ds;
 
   before(function(done) {
-    var ds = loopback.createDataSource({
-      db: {address: mongoConnectionString, collection: "AgendaJob"},
-      connector: AgendaConnector});
+    ds = loopback.createDataSource({connector: AgendaConnector});
     QueueJob = app.model('QueueJob', {dataSource: ds, public: false});
     QueueJob.delete(done);
   });
 
   afterEach(function(done) {
     QueueJob.delete(done);
+  });
+
+  after(function(done) {
+    ds.disconnect(done);
   });
 
   it('Create job to be run now', function(done) {
