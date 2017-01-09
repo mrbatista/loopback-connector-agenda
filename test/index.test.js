@@ -42,6 +42,20 @@ describe('Loopback Agenda Connector', function() {
       });
   });
 
+  it('Create recurrent job', function(done) {
+    
+    QueueJob.define('test-rec', function(j, doneJob) {
+      expect(j).to.exist();
+      expect(j.attrs._id).to.exist();
+      done();
+    });
+    
+    QueueJob.every("1 seconds", 'test-rec', function(err, job) {
+        if (err) return done(err);
+      });
+    
+  });
+  
   it('Define job', function(done) {
     var job;
     QueueJob.define('test', function(j, doneJob) {
