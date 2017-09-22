@@ -64,7 +64,7 @@ describe('Loopback Agenda Connector', function() {
       done();
     });
 
-    QueueJob.every("1 seconds", 'test-rec', function(err, job) {
+    QueueJob.every('1 seconds', 'test-rec', function(err, job) {
       if (err) return done(err);
       expect(job).to.exist();
       expect(job.attrs._id).to.exist();
@@ -80,7 +80,7 @@ describe('Loopback Agenda Connector', function() {
         done();
       });
 
-    QueueJob.every("1 seconds", 'test-rec')
+    QueueJob.every('1 seconds', 'test-rec')
       .then(function(job) {
         expect(job).to.exist();
         expect(job.attrs._id).to.exist();
@@ -94,7 +94,7 @@ describe('Loopback Agenda Connector', function() {
       done();
     });
 
-    QueueJob.every("1 seconds", 'test-rec', function(err, job) {
+    QueueJob.every('1 seconds', 'test-rec', function(err, job) {
       if (err) return done(err);
       expect(job).to.exist();
       expect(job.attrs._id).to.exist();
@@ -208,7 +208,7 @@ describe('Loopback Agenda Connector', function() {
         expect(jobs.length).to.be.equal(1);
         expect(jobs[0].attrs.data.text).to.be.equal('Ciao');
         done();
-      })
+      });
     });
   });
 
@@ -221,7 +221,7 @@ describe('Loopback Agenda Connector', function() {
           expect(jobs).to.be.instanceOf(Array);
           expect(jobs.length).to.be.equal(1);
           expect(jobs[0].attrs.data.text).to.be.equal('Ciao');
-        })
+        });
       });
   });
 });
