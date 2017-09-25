@@ -1,20 +1,18 @@
 'use strict';
 
-var loopback = require('loopback');
 var expect = require('./expect');
-var AgendaConnector = require('../');
-var app = loopback();
+var dataSource = require('./init');
 
 describe('Loopback Agenda Connector', function() {
   var QueueJob, ds;
 
-  before(function() {
-    ds = loopback.createDataSource({connector: AgendaConnector});
-    QueueJob = app.model('QueueJob', {dataSource: ds, public: false});
-    return QueueJob.delete();
+  before(function(done) {
+    ds = dataSource.getDataSource();
+    QueueJob = ds.define('QueueJob');
+    done();
   });
 
-  afterEach(function() {
+  beforeEach(function() {
     return QueueJob.delete();
   });
 
@@ -217,11 +215,12 @@ describe('Loopback Agenda Connector', function() {
       .then(function(job) {
         expect(job).to.exist();
         expect(job.attrs._id).to.exist();
-        return QueueJob.find({'data.text': 'Ciao'}).then(function(jobs) {
-          expect(jobs).to.be.instanceOf(Array);
-          expect(jobs.length).to.be.equal(1);
-          expect(jobs[0].attrs.data.text).to.be.equal('Ciao');
-        });
+        return QueueJob.find({'data.text': 'Ciao'})
+          .then(function(jobs) {
+            expect(jobs).to.be.instanceOf(Array);
+            expect(jobs.length).to.be.equal(1);
+            expect(jobs[0].attrs.data.text).to.be.equal('Ciao');
+          });
       });
   });
 });
