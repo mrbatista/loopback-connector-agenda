@@ -1,8 +1,10 @@
 language: node_js
-env: CI=true
 node_js:
   - '4'
   - '6'
   - '8'
 services:
     - mongodb
+branches:
+  only:
+    - master
