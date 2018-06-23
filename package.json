@@ -18,11 +18,12 @@
   "dependencies": {
     "agenda": "^1.0.0",
     "bluebird": "^3.5.0",
-    "debug": "^3.0.1"
+    "debug": "^3.0.1",
+    "snyk": "^1.83.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "coveralls": "^2.11.1",
+    "coveralls": "^3.0.0",
     "dirty-chai": "^1.2.2",
     "eslint": "^4.7.2",
     "eslint-config-loopback": "^8.0.0",
@@ -37,6 +38,9 @@
     "should": "^11.1.0"
   },
   "scripts": {
-    "test": "gulp"
-  }
+    "test": "gulp",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "snyk": true
 }
